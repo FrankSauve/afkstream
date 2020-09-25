@@ -20,6 +20,7 @@ def do_browser():
     browser.find_element_by_name("username").send_keys(username)
     browser.find_element_by_name("password").send_keys(password)
     browser.find_element_by_xpath("/html/body/div/div/div/div[2]/div[1]/div/button").click()
+    browser.find_element_by_link_text("WATCH LIVE").click()
 
 
 schedule.every().day.at(timeInput).do(do_browser)
