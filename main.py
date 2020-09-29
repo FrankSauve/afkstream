@@ -16,11 +16,21 @@ def do_browser():
 
     browser.implicitly_wait(10)
     
+    # Homepage not logged in
     browser.find_element_by_link_text("LOGIN").click()
+    
+    # Login page
     browser.find_element_by_name("username").send_keys(username)
     browser.find_element_by_name("password").send_keys(password)
-    browser.find_element_by_xpath("/html/body/div/div/div/div[2]/div[1]/div/button").click()
-    browser.find_element_by_link_text("WATCH LIVE").click()
+    browser.find_element_by_xpath("/html/body/div/div/div/div[2]/div[1]/div/button").click() # Login button
+    
+    # Homepage logged in
+    browser.find_element_by_class_name("invisible-overlay-button").click() # Watch live button
+    
+    # Select Youtube stream
+    browser.find_element_by_class_name("stream-selector").click() # Options button
+    browser.find_element_by_class_name("option").click() # Stream options
+    browser.find_element_by_css_selector("li.option.youtube").click() # Youtube stream option
 
 
 schedule.every().day.at(timeInput).do(do_browser)
